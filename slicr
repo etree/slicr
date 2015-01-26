@@ -43,12 +43,12 @@ cuetag $FILENAME.cue split-track*.flac
 mv *cue ../cues/
 cp *txt ../cues/
 
-# This will rename files using the strucure "track-number title", the one I like, but it can be easyly changed using common parameters. Please read lltag manual for more information.
+# This will rename files, but it can be easyly changed using common parameters. Please read lltag manual for more information.
 
 echo "Renaming files..."
 lltag --yes --no-tagging --rename '%t' `ls split-track*.flac`
 
-echo "getting Jimmys txt files ready for flacify"
+echo "getting nugs.net style txt files ready for flacify"
 cp $FILENAME.txt ../cues
 rpl -q '(' '' $FILENAME.txt
 rpl -q ')' '' $FILENAME.txt
