@@ -54,6 +54,7 @@ rpl -q '(' '' $FILENAME.txt
 rpl -q ')' '' $FILENAME.txt
 echo -e "\n" >> $FILENAME.txt
 echo "Source: phrog@etree.org" >> $FILENAME.txt
+rm 00*.flac
 cd ../
 echo 
 echo

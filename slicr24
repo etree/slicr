@@ -32,6 +32,7 @@ FILENAME="$(basename $i)"
 FILENAME="${FILENAME%.[cC][uU][eE]}"
 
 echo "Splitting files..."
+
 cuebreakpoints $FILENAME.cue  | sed s/$/0/ | shnsplit -o flac $FILENAME.flac
 echo
 echo "Moving the large flac file out of the way for flacify.."
@@ -41,6 +42,7 @@ echo "Adding tags..."
 cuetag $FILENAME.cue split-track*.flac
 mv *cue ../cues/
 cp *txt ../cues/
+
 # This will rename files using the strucure "track-number title", the one I like, but it can be easyly changed using common parameters. Please read lltag manual for more information.
 
 echo "Renaming files..."
