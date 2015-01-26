@@ -1,0 +1,65 @@
+#!/bin/bash
+
+clear
+
+# Introduction
+
+echo
+echo
+echo
+echo "This script will convert, split rename and tag FLAC files with an associated cue and txt file"
+echo
+echo 
+echo
+echo
+echo
+echo
+
+# Now it will check if we have chosen a cue file
+
+for i in $*; do
+case $i in
+*.[cU][uU][eE])
+echo "Checking if file $i is a .cue file...";;
+*)
+echo "Warning: File $i is not a .cue file. Aborting."
+continue
+esac
+
+# Processing files
+
+FILENAME="$(basename $i)"
+FILENAME="${FILENAME%.[cC][uU][eE]}"
+
+echo "Splitting files..."
+cuebreakpoints  $FILENAME.cue
+shnsplit -o flac -f $FILENAME.cue $FILENAME.flac
+echo
+echo "Moving the large flac file out of the way for flacify.."
+mv $FILENAME.flac ../uncut/
+
+echo "Adding tags..."
+cuetag $FILENAME.cue split-track*.flac
+mv *cue ../cues/
+# This will rename files using the strucure "track-number title", the one I like, but it can be easyly changed using common parameters. Please read lltag manual for more information.
+
+echo "Renaming files..."
+lltag --yes --no-tagging --rename '%t' `ls split-track*.flac`
+
+echo "getting Jimmys txt files ready for flacify"
+cp $FILENAME.txt ../cues
+rpl -q '(' '' $FILENAME.txt
+rpl -q ')' '' $FILENAME.txt
+echo -e "\n" >> $FILENAME.txt
+echo "Source: Jam Cruise - Cruise Tunes" >> $FILENAME.txt
+cd ../
+echo 
+echo
+echo "Running Flacify"
+flacify $FILENAME
+echo
+echo
+echo "Process ended."
+cd ..
+
+done
