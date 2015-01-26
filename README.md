@@ -3,10 +3,9 @@ Automates the slicing and naming of large FLAC files using a .cue sheet.
 
 * make a folder for your project with the name of the folder you would like the final name to be. 
 
-  ###  Example:
-  um150110 nugs style
+  **um150110** nugs style
   *or*
-  um2015-01-10 etree.org style 
+  **um2015-01-10** etree.org style 
 
 * copy the flac, cue and txt into that folder
 
