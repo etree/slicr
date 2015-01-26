@@ -51,7 +51,7 @@ cp $FILENAME.txt ../cues
 rpl -q '(' '' $FILENAME.txt
 rpl -q ')' '' $FILENAME.txt
 echo -e "\n" >> $FILENAME.txt
-echo "Source: Jam Cruise - Cruise Tunes" >> $FILENAME.txt
+echo "Source: phrog@etree.org" >> $FILENAME.txt
 rm 00*.flac
 cd ../
 echo 

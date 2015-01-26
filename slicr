@@ -41,6 +41,8 @@ mv $FILENAME.flac ../uncut/
 echo "Adding tags..."
 cuetag $FILENAME.cue split-track*.flac
 mv *cue ../cues/
+cp *txt ../cues/
+
 # This will rename files using the strucure "track-number title", the one I like, but it can be easyly changed using common parameters. Please read lltag manual for more information.
 
 echo "Renaming files..."
@@ -51,7 +53,7 @@ cp $FILENAME.txt ../cues
 rpl -q '(' '' $FILENAME.txt
 rpl -q ')' '' $FILENAME.txt
 echo -e "\n" >> $FILENAME.txt
-echo "Source: Jam Cruise - Cruise Tunes" >> $FILENAME.txt
+echo "Source: phrog@etree.org" >> $FILENAME.txt
 cd ../
 echo 
 echo
